@@ -1,26 +1,37 @@
-import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import Navbar from './components/Navbar'
+import Hero from './components/Hero'
+import { About, WhyBook, CalendlyEmbed } from './components/HomeSections'
+import PopupLead from './components/PopupLead'
+import Projects from './pages/Projects'
+import Benefits from './pages/Benefits'
+import Booking from './pages/Booking'
+import Contact from './pages/Contact'
+
+function Home() {
+  return (
+    <main className="bg-white">
+      <Hero />
+      <About />
+      <WhyBook />
+      <CalendlyEmbed id="booking" />
+    </main>
+  )
+}
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white text-black">
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/benefits" element={<Benefits />} />
+        <Route path="/booking" element={<Booking />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+      <PopupLead />
+      <footer className="border-t border-black/5 py-8 text-center text-sm text-gray-600">© {new Date().getFullYear()} Money By Tej • Fine Acers Partner</footer>
     </div>
   )
 }
